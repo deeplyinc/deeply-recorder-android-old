@@ -4,7 +4,9 @@ import android.Manifest
 import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresPermission
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -85,4 +87,15 @@ class DeeplyRecorder(
      * @return Audio buffer size, which is the number of audio samples recorded at one time.
      */
     fun getBufferSize(): Int = buffer.size
+
+    companion object {
+        fun requestRecordingPermission(activity: AppCompatActivity, callback: (isGranted: Boolean) -> Unit) {
+            val request = activity.registerForActivityResult(
+                ActivityResultContracts.RequestPermission()
+            ) { isGranted ->
+                callback(isGranted)
+            }
+            request.launch(Manifest.permission.RECORD_AUDIO)
+        }
+    }
 }
