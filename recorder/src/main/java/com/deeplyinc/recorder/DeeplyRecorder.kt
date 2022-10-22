@@ -23,7 +23,7 @@ class DeeplyRecorder(
     /**
      * Specify the buffer size of the recorder, which is the number of audio samples recorded at
      * one time. If the given size is less than the minimum size of the buffer, it is set to the
-     * minimum size of the buffer. Default value is AudioRecord.getMinBufferSize()
+     * minimum size of the buffer. Default value is AudioRecord.getMinBufferSize() * 2
      */
     bufferSize: Int? = null
 ) {
@@ -40,11 +40,11 @@ class DeeplyRecorder(
      * A buffer for storing audio samples recorded from microphone.
      */
     private var buffer: ShortArray = ShortArray(
-        bufferSize ?: AudioRecord.getMinBufferSize(
+        bufferSize ?: (AudioRecord.getMinBufferSize(
             sampleRate,
             channel,
             audioFormat
-        )
+        ) * 2)
     )
 
     private var audioRecorder: AudioRecord? = null
