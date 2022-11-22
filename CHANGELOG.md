@@ -26,5 +26,7 @@ All notable changes to DeeplyRecorder.
 
 
 
-[unreleased]: https://github.com/deeplyinc/listen-sdk-android/compare/v1.0.2...HEAD
-[1.0.2]: https://github.com/deeplyinc/listen-sdk-android/releases/tag/v1.0.2
+[unreleased]: https://github.com/deeplyinc/deeply-recorder-android/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/deeplyinc/deeply-recorder-android/compare/v0.1.1...v0.1.3
+[0.1.1]: https://github.com/deeplyinc/deeply-recorder-android/compare/v0.1.0...v0.1.1
+[0.1.0]: https://github.com/deeplyinc/deeply-recorder-android/releases/tag/v0.1.0
