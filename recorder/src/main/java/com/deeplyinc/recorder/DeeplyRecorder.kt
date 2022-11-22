@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import java.io.UnsupportedEncodingException
 
 /**
  * An audio recorder wrapping AudioRecord to support Kotlin flow.
@@ -59,6 +60,9 @@ class DeeplyRecorder(
         audioRecorder = AudioRecord(audioSource, sampleRate, channel, audioFormat, buffer.size)
         audioRecorder?.let {
             it.startRecording()
+            if (it.state == AudioRecord.STATE_UNINITIALIZED) {
+                throw IllegalStateException("Failed to initialize AudioRecord")
+            }
             run = true
             while (run) {
                 it.read(buffer, 0, buffer.size, AudioRecord.READ_BLOCKING)
